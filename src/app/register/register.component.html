@@ -8,12 +8,12 @@
                     <div class="form-group">
                         <label for="phone">Phone</label>
                         <input type="text" class="form-control" id="phone" required
-                            [(ngModel)]="phone"
+                            [(ngModel)]="phoneNumber"
                             (ngModelChange)="onPhoneChange()"
                             name="phone"
                             (focus)="registerForm.form.markAsTouched()">
                         <div class="divider-nospace"></div>
-                        <p class="text-danger" *ngIf="phone.length < 6 && registerForm.form.touched">
+                        <p class="text-danger" *ngIf="phoneNumber.length < 6 && registerForm.form.touched">
                             Phone phải có ít nhất 6 ký tự
                         </p>
                     </div>
