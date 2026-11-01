@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +19,7 @@ export class RegisterComponent {
   isAccepted: boolean;
   dateOfBirth: Date;
 
-  constructor(private http: HttpClient, private router: Router) { 
+  constructor(private router: Router, private userService: UserService) { 
     this.phoneNumber = '090';
     this.password = '12345';
     this.retypePassword = '12345';
@@ -69,21 +69,19 @@ export class RegisterComponent {
       return;
     }
 
-    const apiUrl = 'http://localhost:8088/api/v1/users/register';
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const registerData = {
       "fullname": this.fullName,
-        "phone_number": this.phoneNumber,
-        "address": this.address,
-        "password": this.password,
-        "retype_password": this.retypePassword,
-        "date_of_birth": this.dateOfBirth,
-        "facebook_account_id": 0,
-        "google_account_id": 0,
-        "role_id": 1
+      "phone_number": this.phoneNumber,
+      "address": this.address,
+      "password": this.password,
+      "retype_password": this.retypePassword,
+      "date_of_birth": this.dateOfBirth,
+      "facebook_account_id": 0,
+      "google_account_id": 0,
+      "role_id": 1
     };
 
-    this.http.post(apiUrl, registerData, { headers }).subscribe({
+    this.userService.registerUser(registerData).subscribe({
       next: (response: any) => {
         debugger;
         this.router.navigate(['/login']);
