@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { RegisterDto } from '../dtos/register.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  registerUser(registerData: any) {
+  registerUser(registerData: RegisterDto) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(this.apiUrl, registerData, { headers });
   }
