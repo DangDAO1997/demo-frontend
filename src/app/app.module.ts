@@ -30,6 +30,6 @@ import {
     HttpClientModule
   ],
   providers: [],
-  bootstrap: [RegisterComponent]
+  bootstrap: [LoginComponent]
 })
 export class AppModule { }
